@@ -1,42 +1,40 @@
 <template>
+        
         <div>
-            <h2 class="mb-5">Voici la liste des utilisateurs</h2>
-            <ul id="array">
-                <li v-for="user in users" :key="user.InputPseudo">
+            <NavbarSimple/>
+            <h2 class="mt-5 mb-5">Voici la liste des utilisateurs</h2>
+            <ul  class="d-flex flex-column justify-content-center">
+                <li class="pseudo " v-for="user in users" :key="user.InputPseudo">
                     {{ user.InputPseudo}} 
-                    
                     <button         
                         @click="deleteUser(user)"
-                        class="btnsup mt-3 btn btn-sm btn-outline-danger ml-5 mb-3 ">
-                        Supprimer ce compte <b-icon icon="trash"></b-icon>
+                        class="btnsup ml-5 mb-2 btn btn-sm btn-outline-danger  ">
+                        <b-icon icon="trash"></b-icon>
                     </button>
-                    
-                    
                 </li>
-
             </ul>
-            <button @click="change()" type="button" class="btn btn-primary mt-5">Accueil</button>
+          <Footer/>  
         </div>
 </template>
 <script>
-import  axios from 'axios'
+import  axios from 'axios';
+import NavbarSimple from '../components/NavbarSimple'
+import Footer from '../components/Footer.vue';
 
 
 export default {
      components: {
+         NavbarSimple,
+          Footer
  
   },
     data() { 
         return {
             users : [],
-           
-
         }
     },
     methods : {
-        change(){
-            this.$router.push('/Userconnect');
-        },
+       
         deleteUser(user){
         function testConfirmDialog()  {
               var result = confirm("Etes-vous sûr de vouloir supprimer "+user.InputPseudo+" de ce réseau?");
@@ -93,8 +91,12 @@ export default {
 </script>
 <style scoped>
 
-li{
-    list-style: none;
+.pseudo{
+    width: 150px;
+    margin : 0 auto 10px auto ;
+}
+h2{
+    background-color: rgb(240, 240, 240);
 }
 
 </style>

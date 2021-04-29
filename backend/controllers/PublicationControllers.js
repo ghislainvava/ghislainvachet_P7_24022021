@@ -9,13 +9,12 @@ exports.posterPub = (req,res) =>{
 console.log(req.body.posterPub)
     const posterPub = new Postage({
         id_User : req.body.id_User,
-        titlePost : req.body.titlePost,
         SujetPost : req.body.SujetPost,
         image :  req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.image
     });
   
-    db.query(`INSERT INTO PostReseau(id_User,titlePost,SujetPost, image) VALUES(?, ?, ?, ?)`,
-    [posterPub.id_User, posterPub.titlePost, posterPub.SujetPost, posterPub.image],function(err,data,fields){
+    db.query(`INSERT INTO PostGroupomania(id_User,SujetPost, image) VALUES(?, ?, ?)`,
+    [posterPub.id_User,  posterPub.SujetPost, posterPub.image],function(err,data,fields){
       if (err) {
         if (err.kind === "not_found") {
           res.status(405).send({message: "Publications non trouvé"});
@@ -32,8 +31,9 @@ console.log(req.body.posterPub)
 };
 
 exports.editerPub = (req, res) => {
-let sql = 'SELECT userGroupamania.InputPseudo, postReseau.* FROM userGroupamania INNER JOIN PostReseau ON userGroupamania.id = PostReseau.id_User ORDER BY id_Post DESC' ;
-//let sql = 'SELECT userGroupamania.InputPseudo, PostReseau.* , CommentaireReseau.* FROM ( userGroupamania INNER JOIN PostReseau ON userGroupamania.id = PostReseau.id_User) LEFT JOIN CommentaireReseau ON PostReseau.id_Post = CommentaireReseau.id_Post'
+  
+let sql = 'SELECT userGroupamania.InputPseudo, PostGroupomania.* FROM userGroupamania INNER JOIN PostGroupomania ON userGroupamania.id = PostGroupomania.id_User ORDER BY id_Post DESC' ;
+//let sql = 'SELECT userGroupamania.InputPseudo, PostGroupomania.* , CommentGroupomania.* FROM ( userGroupamania INNER JOIN PostGroupomania ON userGroupamania.id = PostGroupomania.id_User) LEFT JOIN CommentGroupomania ON PostGroupomania.id_Post = CommentGroupomania.id_Post'
 
     db.query(sql, function(err, data, fields){
         if (err) {
@@ -43,9 +43,9 @@ let sql = 'SELECT userGroupamania.InputPseudo, postReseau.* FROM userGroupamania
               res.status(500).send({ message: "Error retrieving  " });
             }
           } else {  
-            //sql2 = 'SELECT CommentaireReseau.* FROM CommentaireReseau INNER JOIN PostReseau ON CommentaireReseau.id_PostComment = PostReseau.id_Post'
-            sql2 ='SELECT userGroupamania.InputPseudo, CommentaireReseau.* FROM ( userGroupamania INNER JOIN PostReseau ON userGroupamania.id = PostReseau.id_User) LEFT JOIN CommentaireReseau ON PostReseau.id_Post = CommentaireReseau.id_PostComment ORDER BY id_Post DESC'
-            db.query(sql2,[req.query.id_Post] ,function(err2,data2, fields2){
+            
+            sql2 ='SELECT userGroupamania.InputPseudo , CommentGroupomania.* FROM userGroupamania INNER JOIN CommentGroupomania ON id = createur ORDER BY Id_commentaire DESC'
+            db.query(sql2,function(err2,data2, fields2){
               if (err) {
                 if (err.kind === "not_found") {
                   res.status(405).send({ message: "Publications non trouvé" });
@@ -64,8 +64,10 @@ let sql = 'SELECT userGroupamania.InputPseudo, postReseau.* FROM userGroupamania
       }
 
 exports.deletePublication = (req, res) => { 
-  let sql =  'DELETE FROM PostReseau WHERE id_Post= ?';
-  db.query(sql, [req.query.id_Post] , function (err, data, fields){
+  var id = req.query.id_Post;
+  let sql =  'DELETE FROM CommentGroupomania WHERE id_PostComment  = ?';
+  
+  db.query(sql, [id] , function (err, data, fields){
     if (err) {
       if (err.kind === "not_found") {
         res.status(405).send({
@@ -73,14 +75,30 @@ exports.deletePublication = (req, res) => {
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving User with id " 
+          message: "erreur 500 " 
         });
       }
     }else{
-      res.status(201).json({
-        message:  "la Publication a bien était supprimée !" 
-        });
-      }
-    });    
-  }
+              let sql2= 'DELETE FROM PostGroupomania WHERE id_Post = ?';
+                db.query(sql2, [id], function (err, data, fields){
+                  if (err) {
+                    if (err.kind === "not_found") {
+                      res.status(405).send({
+                        message: `Not found Publication with id `
+                      });
+                    } else {
+                      res.status(500).send({
+                        message: "erreur 500 " 
+                      });
+                    }
+                  }else{
+                    res.status(201).json({
+                
+                      message:  "la Publication a bien était supprimée !" 
+                      });
+                    }
+                })
+            }  
+          }) 
+  };
 

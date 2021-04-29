@@ -1,47 +1,65 @@
 <template>
-<div class="User">
-    <div class="navbarConnect">
-    <img src="../assets/icon-left-font.png" id="logo">
-    <div>
-    <router-link type="button" to="/Profil" class="btn btn-outline-primary compte">Compte</router-link>
-    <router-link v-if="isAdmin"   type="button" class="btn btn-outline-primary compte" to="/moderateur">Modérer</router-link>
+<div >
+    
+    <NavbarSimple/>
+    <div class="d-flex flex-column mt-5" >
+    <img class="img-responsive" src="../assets/intranet.jpg">
     </div>
-    </div>
-    <div id="direction">
-    <router-link type="button" class="btn btn-primary btn-lg" to="/Publications">Publications</router-link>
+    <div class="direction">
+    <router-link type="button" class="btn btn-primary btn-lg mr-3" to="/Publications">Publications</router-link>
     <router-link type="button" class="btn btn-primary btn-lg " to="/video">Video</router-link>
 
     </div>
+    
      <Footer/>
 </div>
 </template>
 <script>
 import Footer from '../components/Footer'
+import NavbarSimple from '../components/NavbarSimple'
 export default {
     name: "UserConnect",
     data()  {
         return{
-            isAdmin: localStorage.getItem("isAdmin")
+            
         }
     },
     components :  {
-        Footer   
+        Footer,
+        NavbarSimple  
+    },
+    methods : {
+        deconnecte(){
+           localStorage.clear();
+           this.$router.push('/');
+         }
     }
 }
 </script>
 <style>
-    .navbarConnect{
-        display: flex;
-        justify-content: space-around;
-    }
     .compte{
         height: 40px;
-        margin: 20px;
+        margin: 80px 20px auto auto;
         width: 100px;   
     }
-    #direction{
-        background-image:  url("../assets/intranet.jpg");
+    .direction{   
         width: 100%;
         height: 100%;
+    }
+    #logo2{
+        height: 180px;
+    }
+    #un{
+        height: 60px;
+        margin: 0px;
+    }
+    #deux{
+        height:38px;
+        width: 50px;
+        margin:0px;    
+    }
+    #trois{
+        width: 60px;
+        padding-top: 6px;   
     }
 </style>

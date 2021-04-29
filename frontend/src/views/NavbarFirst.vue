@@ -12,6 +12,7 @@ export default {
     setup() {
         
     },
+    
 }
 </script>
 <style>
@@ -31,7 +32,7 @@ export default {
     }
 
     #logo {
-        height: 100px;
+        height: 120px;
     }
 
 </style>

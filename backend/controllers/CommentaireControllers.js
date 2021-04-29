@@ -11,7 +11,7 @@ exports.editComment = (req,res) =>{
 
     });
     console.log(posterComment)
-    db.query(`INSERT INTO CommentaireReseau(id_PostComment, commentaire, createur) VALUES(?, ?, ?)`,
+    db.query(`INSERT INTO CommentGroupomania(id_PostComment, commentaire, createur) VALUES(?, ?, ?)`,
     [posterComment.id_PostComment, posterComment.commentaire, posterComment.createur],function(err,data,fields){
       if (err) {
         if (err.kind === "not_found") {
@@ -25,7 +25,7 @@ exports.editComment = (req,res) =>{
   })
 };
 exports.deleteComment = (req, res) => { 
-  let sql =  'DELETE FROM CommentaireReseau WHERE Id_commentaire = ?';
+  let sql =  'DELETE FROM CommentGroupomania WHERE Id_commentaire = ?';
   db.query(sql, [req.query.Id_commentaire] , function (err, data, fields){
     if (err) {
       if (err.kind === "not_found") {

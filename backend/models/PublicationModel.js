@@ -4,7 +4,6 @@ var mysql = require("mysql");
 const Postage = function(publication) {
     
     this.id_User = publication.id_User; 
-    this.titlePost = publication.titlePost;
     this.SujetPost = publication.SujetPost;
     this.image = publication.image;
        

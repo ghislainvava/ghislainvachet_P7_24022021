@@ -37,12 +37,7 @@
             Supprimer votre compte <b-icon icon="exclamation-triangle"></b-icon>
           </button>
 
-    <button
-               @click="deconnecte()"  
-               class="btn btn-light " 
-                >
-      <span aria-hidden="true">&times;   se déconnecter </span>
-    </button>
+    
         
 </div>
     </div>
@@ -113,16 +108,7 @@ export default {
                   });
                 }
          },
-         deconnecte(){
-           
-           localStorage.clear();
-           this.$router.push('/');
-           
-             
-           
-           
-
-         }
+         
     },
     created(){
                 console.log(this.user_id)

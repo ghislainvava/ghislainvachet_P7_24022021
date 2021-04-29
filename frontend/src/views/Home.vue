@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-   
-       
-   <NavbarFirst />
-        <img src="../assets/intranet.jpg">
-    
-    
-    <Footer/>
+    <div class="container-fluid">
+
+      <NavbarFirst />
+      
+      <div class="row">
+          <div class= "col-12">
+              <img class=img-responsive src="../assets/intranet-325.jpg">
+          </div>
+      </div>
+        <Footer/>
+    </div>
   </div>  
 </template>
 
 <script>
 
-//import HelloWorld from '@/components/HelloWorld.vue'
+
 import NavbarFirst from './NavbarFirst'
 
 import Footer from '../components/Footer'
@@ -23,7 +27,16 @@ export default {
 
   components: {  
     NavbarFirst,
-    Footer
+    Footer,
+   
+  }, 
+  data() {
+    return  {
+      connect : false 
+    }
+  },
+  methods : {
+  
   }
 }
 </script>
@@ -36,5 +49,8 @@ export default {
   height: 50px;
   width: 160px;
   margin-right: 30px;
+}
+.home{
+  margin-top: 10px;
 }
 </style>
