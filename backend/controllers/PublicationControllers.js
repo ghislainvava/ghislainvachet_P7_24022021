@@ -12,6 +12,7 @@ console.log(req.body.posterPub)
         SujetPost : req.body.SujetPost,
         image :  req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.image
     });
+    console.log(req.body.posterPub)
   
     db.query(`INSERT INTO PostGroupomania(id_User,SujetPost, image) VALUES(?, ?, ?)`,
     [posterPub.id_User,  posterPub.SujetPost, posterPub.image],function(err,data,fields){

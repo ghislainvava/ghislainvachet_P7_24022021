@@ -1,45 +1,43 @@
 <template>
-  <div class="corpus">
+  <div >
 
         <NavbarSimple/>
-        <div id="container">
+        <div class=" createPost mx-2 px-2 mx-md-5 px-md-5 mb-5 py-3">
                     <h1>Créer un nouveau Post</h1>
                     <form @submit="publier">
-                        
                         <textarea
-                          class="form-control"
+                          class="form-control mb-3"
                           name="SujetPost"
                           rows="3"
                           placeholder="Décrire le post..."
                           v-model="SujetPost"
                         ></textarea>
-
-                        <div id="postage">
-                            <input type="file" ref="image" class="file-input" @change="upload()"  />
-                            <button  type="submit" class="btn btn-primary btn-lg ">Publier</button>
+                        <div class="d-md-flex justify-content-between" >
+                            <input type="file" ref="image" class="file-input" @change="upload"  />
+                            <button  type="submit" class="btn btn-primary btn-md mt-2 mt-md-0">Publier</button>
                         </div>
                     </form>   
         </div>
-        
-           
-        <div id="publier" v-for="pub in Publications" :key="pub.SujetPost" >
-                  <div class="publipostage">
-                        <div class="posteur">
-                            <p> {{ pub.InputPseudo }} a posté le  {{ pub.date_post }}</p>
+        <div class="createPost mt-5 mx-2 px-2 mx-md-5 px-md-5 py-3" v-for="pub in Publications" :key="pub.SujetPost" >
+                  <div class="d-flex row ml-2">
+                        
+                            <p class="border-bottom"> <b>{{ pub.InputPseudo }}</b> a posté le  {{ pub.date_post }}</p>
+                      
+                           
+                        
+                        <div class="d-flex    w-100">
+                           <p class="d-flex justify-content-start">{{ pub.SujetPost }}</p>
+                            <button       
+                                v-show="isAdmin == 1 || id_User == pub.id_User"              
+                                @click="deletePublication(pub)"       
+                                class=" btnsup  btn btn-sm btn-outline-danger border-white mb-5 mr-3">
+                                <b-icon icon="trash"></b-icon>
+                            </button>
                         </div>
-                        <div class="desc">
-                            {{ pub.SujetPost }}
-                        </div>
-                        <button       
-                            v-show="isAdmin == 1 || id_User == pub.id_User"              
-                            @click="deletePublication(pub)"       
-                            class="btnsup mt-3 btn btn-sm btn-outline-danger mb-3">
-                            <b-icon icon="trash"></b-icon>
-                        </button>
                     </div>
 
                     <form @submit="commenter(pub.id_Post)">
-                            <div class="bouton"> 
+                            <div class="d-flex"> 
                                 <textarea 
                                   class="form-control"
                                   name="commentaire"
@@ -48,7 +46,7 @@
                                   v-model.lazy = commentaire
                                 ></textarea>
                                 <button type="submit" 
-                                        class="btn btn-outline-primary btnComment">
+                                        class=" ml-2 h-25 btn btn-outline-primary btnComment">
                                         Commenter
                                 </button>
                             </div>
@@ -62,15 +60,17 @@
                               })"
                               :key="comment.Id_commentaire " >
 
-                          <div class="editer">
-                                <p class="ps">{{ comment.InputPseudo }} a commenté:</p>
-                                <p class="comment">{{ comment.commentaire }}</p>
-                          <button   
-                                v-show="isAdmin == 1 || id_User == comment.createur"                         
-                                @click="deleteComment(comment)"       
-                                class="btnsup mt-3 btn btn-sm btn-outline-danger mb-3">
-                                <b-icon icon="trash"></b-icon>
-                        </button>
+                          <div class=" mt-3 border  rounded">
+                                <p class="bg-secondary text-white rounded">{{ comment.InputPseudo }} a commenté:</p>
+                                <div class=" d-flex justify-content-start">
+                                  <p class="comment">{{ comment.commentaire }}</p>
+                                  <button   
+                                        v-show="isAdmin == 1 || id_User == comment.createur"                         
+                                        @click="deleteComment(comment)"       
+                                        class="btnsup  btn btn-sm btn-outline-danger border-white mb-5 mr-3">
+                                        <b-icon icon="trash"></b-icon>
+                                  </button>
+                                </div>
                     </div>
            </div>
     </div>
@@ -105,10 +105,13 @@ export default {
   },
   methods : {
 
-  upload() {
-    this.image = this.$refs.image.files[0];
+  upload(event) {
+    this.image = event.target.files[0];
+    //this.image = this.$refs.image.files[0];
     console.log(this.image);
                 },
+      
+    
     
     publier(){
       console.log(this.image)
@@ -197,69 +200,17 @@ export default {
 </script>
 
 <style>
-  
-    #container{
-        margin: 50px 20px;
-        background-color: white;  
-    }
-
-    h1{
-      display: flex;
-      align-self: flex-start;
-    }
+.createPost{
+  border: rgb(54, 121, 246) 5px solid;
+  border-radius: 15px;
+}
+    
     .input-group-prepend{
         border-top-left-radius: 10px;
     }
-    #publier{
-      margin : 20px 20px 60px 20px;
-      border-radius: 10px;
-       
-    }
-    .posteur{
-      background-color: rgb(236, 236, 236);
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-    .desc{
-      margin: 20px;
-      display: flex;
-      justify-content: flex-start;
-    }
-    .editer{ 
-      display :flex;
-      justify-content: space-around;
-      margin : 15px;
-      border: rgb(236, 236, 236) solid 1px;
-      border-radius: 15px;
-    }
-    .comment{
-      border-radius: 15px;
-      width : 80%;
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      padding : 10px;
-    }
-    .ps{
-      width: 10%;
-      
-    }
-    #postage{
-      display: flex;
-      justify-content: space-between;
-      margin-top : 15px;
-    }
-    .btn-primary{
-      margin-right: 0px;
-    }
-    .bouton{
-      display: flex;
-      margin: 25px;
-    }
-    .btnComment{
-      height: 40px;
-      margin-left: 20px;
-    }
+   
+
+   
     .publipostage{
       border : rgb(236, 236, 236) 1px solid;
       margin :10px;

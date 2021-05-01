@@ -2,10 +2,10 @@
         
         <div>
             <NavbarSimple/>
-            <h2 class="mt-5 mb-5">Voici la liste des utilisateurs</h2>
-            <ul  class="d-flex flex-column justify-content-center">
-                <li class="pseudo " v-for="user in users" :key="user.InputPseudo">
-                    {{ user.InputPseudo}} 
+            <h2 >Voici la liste des utilisateurs</h2>
+            <ul  class="d-flex flex-column  mt-5">
+                <li class="pseudo d-flex justify-content-beetween " v-for="user in users" :key="user.InputPseudo">
+                    <h4 class="kolko d-flex justify-content-start"  >{{ user.InputPseudo}}</h4> 
                     <button         
                         @click="deleteUser(user)"
                         class="btnsup ml-5 mb-2 btn btn-sm btn-outline-danger  ">
@@ -54,6 +54,7 @@ export default {
                 .then((res) => {
                     console.log(res)
                   alert("suppresion réussie");
+                  this.$router.go('/')
                  
                   
                 })
@@ -91,9 +92,8 @@ export default {
 </script>
 <style scoped>
 
-.pseudo{
-    width: 150px;
-    margin : 0 auto 10px auto ;
+.kolko{
+    width: 200px;
 }
 h2{
     background-color: rgb(240, 240, 240);

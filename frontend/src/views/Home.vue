@@ -1,17 +1,13 @@
 <template>
-  <div class="home">
-    <div class="container-fluid">
+  <div >
+    
 
       <NavbarFirst />
       
-      <div class="row">
-          <div class= "col-12">
-              <img class=img-responsive src="../assets/intranet-325.jpg">
-          </div>
-      </div>
-        <Footer/>
+      <intranet-moderer/>
+      <Footer/>
     </div>
-  </div>  
+
 </template>
 
 <script>
@@ -20,6 +16,7 @@
 import NavbarFirst from './NavbarFirst'
 
 import Footer from '../components/Footer'
+import IntranetModerer from '../components/IntranetModerer.vue'
 //import UserConnect from './UserConnect'
 
 export default {
@@ -28,6 +25,7 @@ export default {
   components: {  
     NavbarFirst,
     Footer,
+    IntranetModerer,
    
   }, 
   data() {
@@ -41,16 +39,5 @@ export default {
 }
 </script>
 <style>
-#direction{
-  display: flex;
-  justify-content: center;
-}
-.btn-lg{
-  height: 50px;
-  width: 160px;
-  margin-right: 30px;
-}
-.home{
-  margin-top: 10px;
-}
+
 </style>

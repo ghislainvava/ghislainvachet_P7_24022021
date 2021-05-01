@@ -2,9 +2,8 @@
 <div >
     
     <NavbarSimple/>
-    <div class="d-flex flex-column mt-5" >
-    <img class="img-responsive" src="../assets/intranet.jpg">
-    </div>
+    <IntranetModerer/>
+    
     <div class="direction">
     <router-link type="button" class="btn btn-primary btn-lg mr-3" to="/Publications">Publications</router-link>
     <router-link type="button" class="btn btn-primary btn-lg " to="/video">Video</router-link>
@@ -17,6 +16,7 @@
 <script>
 import Footer from '../components/Footer'
 import NavbarSimple from '../components/NavbarSimple'
+import IntranetModerer from '../components/IntranetModerer'
 export default {
     name: "UserConnect",
     data()  {
@@ -26,7 +26,8 @@ export default {
     },
     components :  {
         Footer,
-        NavbarSimple  
+        NavbarSimple,
+        IntranetModerer
     },
     methods : {
         deconnecte(){
