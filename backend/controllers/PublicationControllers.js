@@ -2,7 +2,7 @@ const mysql = require("mysql");
 const fs = require("fs");
 const db = require('../middleware/connect');
 const Postage = require('../models/PublicationModel');
-
+var moment = require('moment');
 
 
 exports.posterPub = (req,res) =>{
@@ -26,9 +26,6 @@ console.log(req.body.posterPub)
         res.status(201).json({posterPub, message: "Publication postée !"});
     }
   })
-    
-   
-
 };
 
 exports.editerPub = (req, res) => {
@@ -37,21 +34,25 @@ let sql = 'SELECT userGroupamania.InputPseudo, PostGroupomania.* FROM userGroupa
 //let sql = 'SELECT userGroupamania.InputPseudo, PostGroupomania.* , CommentGroupomania.* FROM ( userGroupamania INNER JOIN PostGroupomania ON userGroupamania.id = PostGroupomania.id_User) LEFT JOIN CommentGroupomania ON PostGroupomania.id_Post = CommentGroupomania.id_Post'
 
     db.query(sql, function(err, data, fields){
+
+      data[0].date_post = moment().format('DD MM YYYY',data[0].date_post);
+
         if (err) {
             if (err.kind === "not_found") {
               res.status(405).send({ message: "Publications non trouvé" });
             } else {
-              res.status(500).send({ message: "Error retrieving  " });
+              res.status(500).send({ message: "Erreur du serveur  " });
             }
           } else {  
             
             sql2 ='SELECT userGroupamania.InputPseudo , CommentGroupomania.* FROM userGroupamania INNER JOIN CommentGroupomania ON id = createur ORDER BY Id_commentaire DESC'
             db.query(sql2,function(err2,data2, fields2){
+
               if (err) {
                 if (err.kind === "not_found") {
                   res.status(405).send({ message: "Publications non trouvé" });
                 } else {
-                  res.status(500).send({ message: "Error retrieving" });
+                  res.status(500).send({ message: "Erreur du serveur" });
                   }
                 } else{
                 res.status(200).json({
