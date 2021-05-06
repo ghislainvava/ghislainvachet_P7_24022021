@@ -6,11 +6,15 @@ var moment = require('moment');
 
 
 exports.posterPub = (req,res) =>{
-console.log(req.body.posterPub)
+console.log(req.body);
+console.log(req.body.image)
     const posterPub = new Postage({
         id_User : req.body.id_User,
         SujetPost : req.body.SujetPost,
-        image :  req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.image
+        image :  req.file
+        ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+        : null
+       
     });
     console.log(req.body.posterPub)
   
@@ -81,26 +85,11 @@ exports.deletePublication = (req, res) => {
         });
       }
     }else{
-              let sql2= 'DELETE FROM PostGroupomania WHERE id_Post = ?';
-                db.query(sql2, [id], function (err, data, fields){
-                  if (err) {
-                    if (err.kind === "not_found") {
-                      res.status(405).send({
-                        message: `Not found Publication with id `
-                      });
-                    } else {
-                      res.status(500).send({
-                        message: "erreur 500 " 
-                      });
-                    }
-                  }else{
                     res.status(201).json({
-                
                       message:  "la Publication a bien était supprimée !" 
                       });
                     }
                 })
-            }  
-          }) 
-  };
+      }  
+
 

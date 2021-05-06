@@ -1,8 +1,8 @@
 <template>
-  <div >
+  <div class="">
 
         <NavbarSimple/>
-        <div class=" createPost mx-2 px-2 mx-md-5 px-md-5 mb-5 py-3">
+        <div class=" rounded bg-light createPost mx-2 px-2 mx-md-5 px-md-5 mb-5 py-3">
                     <h1>Créer un nouveau Post</h1>
                     <form @submit="publier">
                         <textarea
@@ -13,24 +13,33 @@
                           v-model="SujetPost"
                         ></textarea>
                         <div class="d-md-flex justify-content-between" >
-                            <input type="file" ref="image" class="file-input" @change="upload"  />
-                            <button  type="submit" class="btn btn-primary btn-md mt-2 mt-md-0">Publier</button>
+                            <input type="file" ref="image" class="file-input" @change="upload"/> 
+                            
+                            <button  type="submit" class="btn btn-outline-secondary btn-md mt-2 mt-md-0">Publier</button>
+                   
                         </div>
+    <!-- <b-form-file
+      v-model="file1"
+      :state="Boolean(file1)"
+      placeholder="Choose a file or drop it here..."
+      drop-placeholder="Drop file here..."
+    ></b-form-file>
+    <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div> -->
+
                     </form>   
+                    
         </div>
-        <div class="createPost mt-5 mx-2 px-2 mx-md-5 px-md-5 py-3" v-for="pub in Publications" :key="pub.SujetPost" >
+        <div class=" rounded-top bg-light createPost mt-5 mx-2 px-2 mx-md-5 px-md-5 py-3" v-for="pub in Publications" :key="pub.SujetPost" >
                   <div class="d-flex row ml-2">
                         
-                            <p class="border-bottom"> <b>{{ pub.InputPseudo }}</b> a posté le  {{ pub.date_post }}</p>
-                      
-                           
-                        
-                        <div class="d-flex    w-100">
+                        <p class="border-bottom"> <b>{{ pub.InputPseudo }}</b> a posté le  {{ pub.date_post }}</p>
+
+                        <div class="d-flex w-100">
                            <p class="d-flex justify-content-start">{{ pub.SujetPost }}</p>
                             <button       
                                 v-show="isAdmin == 1 || id_User == pub.id_User"              
                                 @click="deletePublication(pub)"       
-                                class=" btnsup  btn btn-sm btn-outline-danger border-white mb-5 mr-3">
+                                class=" btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
                                 <b-icon icon="trash"></b-icon>
                             </button>
                         </div>
@@ -46,7 +55,7 @@
                                   v-model.lazy = commentaire
                                 ></textarea>
                                 <button type="submit" 
-                                        class=" ml-2 h-25 btn btn-outline-primary btnComment">
+                                        class=" ml-2 h-25 btn btn-outline-secondary btnComment">
                                         Commenter
                                 </button>
                             </div>
@@ -60,14 +69,14 @@
                               })"
                               :key="comment.Id_commentaire " >
 
-                          <div class=" mt-3 border  rounded">
-                                <p class="bg-secondary text-white rounded">{{ comment.InputPseudo }} a commenté:</p>
+                          <div class=" mt-3 border  rounded-top">
+                                <p class="bg-secondary text-white rounded-top">{{ comment.InputPseudo }} a commenté:</p>
                                 <div class=" d-flex justify-content-start">
-                                  <p class="comment">{{ comment.commentaire }}</p>
+                                  <p class="mx-2">{{ comment.commentaire }}</p>
                                   <button   
                                         v-show="isAdmin == 1 || id_User == comment.createur"                         
                                         @click="deleteComment(comment)"       
-                                        class="btnsup  btn btn-sm btn-outline-danger border-white mb-5 mr-3">
+                                        class="btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
                                         <b-icon icon="trash"></b-icon>
                                   </button>
                                 </div>
@@ -95,8 +104,10 @@ export default {
        InputPseudo:"",
        id:"",
        Id_commentaire:"",
-       image:null ,
-       createur:""
+       image: null,
+       createur:"",
+       home: 0,
+       file1: null
     }
   },
   components : { 
@@ -105,30 +116,24 @@ export default {
   },
   methods : {
 
-  upload(event) {
-    this.image = event.target.files[0];
-    //this.image = this.$refs.image.files[0];
-    console.log(this.image);
-                },
-      
-    
-    
+  upload() {
+      this.image = this.$refs.image.files[0];
+      console.log(this.image);
+    },
+                
     publier(){
-      console.log(this.image)
-              this.Publications = [];
-                axios.post(`http://localhost:3000/api/publication/post`, {
-                'id_User' : this.id_User ,
-                'SujetPost': this.SujetPost,
-                'image' : this.image
-                    },{
-                        headers:{
-                          Authorization: `token ${localStorage.getItem("acces_token")}`
-                        }
-            })
-              .then(res => {
-                console.log(res)
-              alert("Votre publication a bien été ajoutée") 
-              })
+      axios.post(`http://localhost:3000/api/publication/post`, {
+        'id_User': this.id_User,
+        'SujetPost': this.SujetPost,
+        'image': this.image,
+      
+      
+        },{
+          headers:{
+            Authorization: `token ${localStorage.getItem("acces_token")}`
+               }
+          })
+              .then(res => { console.log(res) })
               .catch(error => { alert(error) })
       },
       testConfirmDialog()  {
@@ -194,28 +199,16 @@ export default {
            this.Commentaire = res.data.AllCommentaires;
            console.log(res.data.AllCommentaires);
            })
-          .catch(console.log("probleme d'acces aux publications"))
+          .catch(error => { alert(error) })
       }  
   }
 </script>
 
 <style>
-.createPost{
-  border: rgb(54, 121, 246) 5px solid;
-  border-radius: 15px;
-}
-    
-    .input-group-prepend{
-        border-top-left-radius: 10px;
-    }
-   
 
+ 
    
-    .publipostage{
-      border : rgb(236, 236, 236) 1px solid;
-      margin :10px;
-      border-radius: 10px;
-    }
+    
    
    
 </style>

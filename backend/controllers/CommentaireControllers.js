@@ -8,9 +8,7 @@ exports.editComment = (req,res) =>{
         id_PostComment : req.body.id_PostComment,
         commentaire : req.body.commentaire,
         createur : req.body.createur
-
     });
-    console.log(posterComment)
     db.query(`INSERT INTO CommentGroupomania(id_PostComment, commentaire, createur) VALUES(?, ?, ?)`,
     [posterComment.id_PostComment, posterComment.commentaire, posterComment.createur],function(err,data,fields){
       if (err) {

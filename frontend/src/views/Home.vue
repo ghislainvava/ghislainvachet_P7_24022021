@@ -13,7 +13,7 @@
 <script>
 
 
-import NavbarFirst from './NavbarFirst'
+import NavbarFirst from '../components/NavbarFirst'
 
 import Footer from '../components/Footer'
 import IntranetModerer from '../components/IntranetModerer.vue'

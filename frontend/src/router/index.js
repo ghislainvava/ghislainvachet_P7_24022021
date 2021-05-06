@@ -4,9 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../components/Login'
 import SignIn from '../components/SingIn'
 import Footer from '../components/Footer'
-//import Commentaire from '../components/Commentaire'
-
-import NavbarFirst from '../views/NavbarFirst'
+import NavbarFirst from '../components/NavbarFirst'
 import Video from '../views/Video'
 import UserConnect from '../views/UserConnect'
 import Profil from '../views/Profil'
@@ -24,52 +22,48 @@ const routes = [
   },
   {
     path: '/nav',
-    name: 'HomeNavbar',
+    name: 'Navbarirst',
     component: NavbarFirst
    },
    {
-     path:'/Footer',
+     path:'/footer',
      name:'Footer',
      cmponent: Footer
 
    },
    {
-     path: '/Login',
+     path: '/login',
      name: 'Login',
      component: Login
    },
    {
-     path: '/SingIn',
+     path: '/singIn',
      name: 'SingIn',
      component: SignIn
    },
-  //  {
-  //    path: '/Commentaire',
-  //    name: 'Commentaire',
-  //    component: Commentaire
-  //  },
+ 
    {
-     path:'/Publications',
+     path:'/publications',
      name: 'Publications',
      component: Publications
    },
    {
-     path: '/Video',
+     path: '/video',
      name: 'Video',
      component: Video
    },
    {
-     path:'/UserConnect',
+     path:'/userConnect',
      name:'UserConnect',
      component: UserConnect
    },
    {
-     path:'/Profil',
+     path:'/profil',
      name:'Profil',
      component:Profil
    },
    {
-     path:'/Moderateur',
+     path:'/moderateur',
      name:'Moderateur',
      component:Moderateur
    }

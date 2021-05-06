@@ -1,23 +1,24 @@
 <template >
-<div>
-    <div class="d-flex flex-row justify-content-between mx-md-3">
-           
-              <div>  <img src="../assets/icon-left-font.png" id="logo2" class=" "></div>
+
+    <div class="container ">
+           <div class="d-flex ">
+             <div class="col-6 ">  <img src="../assets/icon-left-font.png" alt="logo-groupomania" class="w-75 d-flex justify-content-start"></div>
            
             
-            <div class=" mt-5 mr-3 d-flex flex-row" >   
+            <div class="col-6  d-flex align-items-center justify-content-md-end  " >   
                 
-                <button @click="change()" type="button" class="btn btn-primary mt-3 mr-2 h-25">Accueil</button> 
+                <button @click="change()"  class="btn btn-outline-primary  mr-2 h-25 border-white"><b-icon icon="house-door-fill"></b-icon></button> 
+                <button @click="account()" class="btn btn-outline-primary border-white  mr-2 h-25"><b-icon icon="file-person"></b-icon></button>
                 <button
                         @click="deconnecte()"  
-                         class="btn btn-outline-primary mt-3 h-25">
+                         class="btn btn-outline-primary  h-25 border-white">
                         <b-icon icon="box-arrow-right"></b-icon>
                 </button>
             </div>
-           
+           </div>
     </div>
     
-</div>
+
 </template>
 <script>
 
@@ -37,6 +38,9 @@ export default {
          },
           change(){
             this.$router.push('/Userconnect');
+        },
+        account(){
+            this.$router.push('/Profil')
         }
     }
 }

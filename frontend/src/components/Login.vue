@@ -48,7 +48,7 @@ export default {
                         localStorage.setItem("isAdmin", res.data.isAdmin),
                         console.log(res);
                         alert("Vous êtes connectez !")
-                        this.$router.push('/Userconnect');
+                        this.$router.push('/userconnect');
                       })
                       .catch(error => {
                         const erreur = error.res.data

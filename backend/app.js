@@ -10,6 +10,11 @@ const mysql = require('mysql');
 const dotenv = require('dotenv');
 require('dotenv').config()
 const path = require('path')
+const cookieSession = require("cookie-session");
+const helmet = require("helmet");
+
+// desactive le cache
+const nocache = require("nocache");
 
 const originAccept = ['http://localhost:8080','http://localhost:8081','http://localhost:8082'];
 
@@ -35,6 +40,21 @@ app.use((req, res, next) => { //gestion du CORS
 app.use(express.urlencoded({ extended: true}))
 
 app.use(express.json());
+app.use(nocache());
+app.use(helmet());
+
+// securise session
+app.use(
+  cookieSession({
+    name: "session",
+    secret: "s3CuR3T3",
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      domain: "http://localhost:3000/",
+    },
+  })
+);
 
 
 // app.use(bodyParser.urlencoded({ extended: true }));
