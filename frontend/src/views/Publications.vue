@@ -80,7 +80,7 @@
                                         <b-icon icon="trash"></b-icon>
                                   </button>
                                 </div>
-                    </div>
+                        </div>
            </div>
     </div>
 </div>
@@ -126,8 +126,6 @@ export default {
         'id_User': this.id_User,
         'SujetPost': this.SujetPost,
         'image': this.image,
-      
-      
         },{
           headers:{
             Authorization: `token ${localStorage.getItem("acces_token")}`

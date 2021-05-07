@@ -22,6 +22,10 @@ exports.editComment = (req,res) =>{
     }
   })
 };
+exports.publierComment = (req,res) => {
+
+  
+}
 exports.deleteComment = (req, res) => { 
   let sql =  'DELETE FROM CommentGroupomania WHERE Id_commentaire = ?';
   db.query(sql, [req.query.Id_commentaire] , function (err, data, fields){

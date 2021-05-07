@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/Login'
-import SignIn from '../components/SingIn'
+import Login from '../views/Login'
+import SignIn from '../views/SingIn'
 import Footer from '../components/Footer'
-import NavbarFirst from '../components/NavbarFirst'
 import Video from '../views/Video'
 import UserConnect from '../views/UserConnect'
 import Profil from '../views/Profil'
 import Moderateur from '../views/Moderateur'
 import Publications from '../views/Publications'
+import Comment from '../components/Comment'
 
 
 Vue.use(VueRouter)
@@ -20,15 +20,14 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/nav',
-    name: 'Navbarirst',
-    component: NavbarFirst
-   },
+  { path: '/comment',
+    name: 'Comment',
+    component: Comment
+  },
    {
      path:'/footer',
      name:'Footer',
-     cmponent: Footer
+     component: Footer
 
    },
    {
@@ -65,7 +64,7 @@ const routes = [
    {
      path:'/moderateur',
      name:'Moderateur',
-     component:Moderateur
+     component: Moderateur
    }
 ]
 

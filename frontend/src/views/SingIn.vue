@@ -1,9 +1,9 @@
 <template>
 <div>
     <div>
-        <img class="height" src="../assets/icon-above-font.png" >
+        <img class="w-25 " src="../assets/icon-above-font.png" >
     </div>
-    <form  @submit.prevent="handleSubmit"  class="form-group"> 
+    <form  @submit.prevent="handleSubmit"  class="form-group m-3"> <!-- formulaire -->
           <div class="form-group" >
               <label for="InputPseudo"></label>
                 <input name="InputPseudo" type="text" class="form-control" id="InputPseudo" v-model="InputPseudo"   placeholder="Entrez votre pseudonyme" required>
@@ -24,12 +24,12 @@
                 <label for="InputPassword"></label>
                 <input name="InputPassword" type="password" class="form-control" id="InputPassword" v-model="InputPassword" placeholder="Entrez votre mot de passe" required>
           </div>
-          <button type="submit" class="btn btn-primary">Soumettre</button>
+          <button type="submit" class="btn btn-primary mt-3">Soumettre</button>
     </form> 
 </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios'  //client http
 
 export default {
   name: "SignIn",
@@ -67,11 +67,3 @@ export default {
       } 
          
 </script>
-<style>
-.form-group{
-  margin: 10px;
-}
-.height{
-  height: 200px;
-}
- </style>
