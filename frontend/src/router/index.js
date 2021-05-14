@@ -4,12 +4,12 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login'
 import SignIn from '../views/SingIn'
 import Footer from '../components/Footer'
-import Video from '../views/Video'
+import Forum from '../views/Forum'
 import UserConnect from '../views/UserConnect'
 import Profil from '../views/Profil'
 import Moderateur from '../views/Moderateur'
 import Publications from '../views/Publications'
-import Comment from '../components/Comment'
+
 
 
 Vue.use(VueRouter)
@@ -20,10 +20,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  { path: '/comment',
-    name: 'Comment',
-    component: Comment
-  },
+  
    {
      path:'/footer',
      name:'Footer',
@@ -47,9 +44,9 @@ const routes = [
      component: Publications
    },
    {
-     path: '/video',
-     name: 'Video',
-     component: Video
+     path: '/forum',
+     name: 'Forum',
+     component: Forum
    },
    {
      path:'/userConnect',

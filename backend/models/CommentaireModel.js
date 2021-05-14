@@ -1,10 +1,11 @@
 const mysql = require('mysql');
 
+//constructeur
 const Comment = function (comment) {
    
-    this.id_PostComment = comment.id_PostComment;
-    this.commentaire = comment.commentaire;
-    this.createur = comment.createur;
+    this.id_PostCommentaire = comment.id_PostCommentaire;
+    this.SuejetComment = comment.SujetComment;
+    this.id_Createur = comment.id_Createur;
 
 }
 

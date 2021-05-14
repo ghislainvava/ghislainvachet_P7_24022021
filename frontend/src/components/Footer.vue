@@ -1,6 +1,6 @@
 <template>
    <div id="footer"> 
-       <p>Footer </p>
+     
    </div>
 </template>
 
@@ -16,6 +16,5 @@ export default {
     height: 50px;
     margin-top: 50px;
 }
-
 </style>
 

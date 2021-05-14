@@ -1,6 +1,6 @@
 <template>
     <div class="nav" >
-        <img src="../assets/icon-left-font.png" id="logo">
+        <img src="../assets/icon-left-font.png" alt="logo">
         <div id="connexion">
            <router-link  class="btn btn-primary btn-sm"  to="/Login"> connexion</router-link>
            <router-link  class="btn btn-primary btn-sm"  to="/SingIn"> inscription</router-link>

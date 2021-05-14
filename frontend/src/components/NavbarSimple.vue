@@ -36,10 +36,10 @@ export default {
            this.$router.push('/');
          },
           change(){
-            this.$router.push('/Userconnect');
+            this.$router.push('/userconnect');
         },
         account(){
-            this.$router.push('/Profil')
+            this.$router.push('/profil')
         }
     }
 }

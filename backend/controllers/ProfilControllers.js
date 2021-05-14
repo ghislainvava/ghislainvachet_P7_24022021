@@ -6,9 +6,7 @@ const db = require('../middleware/connect')
 // Trouver un utilisateur par id
 exports.findUser = (req, res) => {
   let sql = 'SELECT * FROM userGroupamania WHERE id = ?';
-  console.log(req.query.id);
     db.query(sql,[req.query.id] ,function(err, data, fields) {
-      console.log(data);
       if (err) {
         if (err.kind === "not_found") {
           res.status(405).send({
@@ -30,14 +28,7 @@ exports.findUser = (req, res) => {
     });
   };
 
- 
-  
   exports.modifyUserProfil = (req, res) => {
-    console.log(req.body)
-    //const token = req.headers.authorization.split(' ')[1];
-    //const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
-    //const userId = decodedToken.userId;
-
     let sql ='UPDATE userGroupamania SET InputPseudo = ? ,InputName = ?, InputLastName = ?, InputEmail = ? WHERE id= ?'
     db.query(sql,[req.body.InputPseudo, req.body.InputName ,req.body.InputLastName, req.body.InputEmail, req.query.id] ,function(err, data, fields) {
       if (err) {

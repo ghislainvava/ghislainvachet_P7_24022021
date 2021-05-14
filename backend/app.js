@@ -1,17 +1,18 @@
 const express = require('express');
-//var bodyParser = require('body-parser');
 const userRoute= require('./routes/userRoute');
 const ProfilRoute = require('./routes/ProfilRoute');
 const AdminRoute = require('./routes/AdminRoute');
 const PublicationRoute = require('./routes/PublicationRoute');
 const CommentaireRoute = require('./routes/CommentaireRoute');
-
+const PublicationTextRoute = require('./routes/PublicationTextRoute');
+const CommentaireTextRoute = require('./routes/CommentaireTextRoute');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 require('dotenv').config()
 const path = require('path')
 const cookieSession = require("cookie-session");
 const helmet = require("helmet");
+const cors = require('cors')
 
 // desactive le cache
 const nocache = require("nocache");
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: true}))
 app.use(express.json());
 app.use(nocache());
 app.use(helmet());
+app.use(cors());
 
 // securise session
 app.use(
@@ -56,15 +58,13 @@ app.use(
   })
 );
 
-
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
 app.use('/api/user', userRoute);
 app.use('/api/user', ProfilRoute);
 app.use('/api/user', AdminRoute);
 app.use('/api/publication', PublicationRoute);
 app.use('/api/commentaire', CommentaireRoute);
+app.use('/api/forumtext/publication', PublicationTextRoute);
+app.use('/api/forumtext/commentaire', CommentaireTextRoute);
 app.use('/images', express.static(path.join(__dirname, '/images'))); //pour utiliser le dossier images en static
 
 module.exports = app;

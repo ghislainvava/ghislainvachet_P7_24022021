@@ -26,23 +26,33 @@ export default {
   },
     methods: {
                   handleSubmit(){
+                   
+                    if (this.InputEmail =="" || this.InputPassword== ""){
+                      this.$alert("Veuillez entrer votre email et votre mot de passe");
+                    }else{
                   axios.post('http://localhost:3000/api/user/login',  {
                   
                       'InputEmail': this.InputEmail,
                       'InputPassword':this.InputPassword
-                    })
+                    },{
+                         headers: {
+                                      Authorization: `token ${localStorage.getItem("acces_token")}`
+                                     
+                                      }
+                                  })
                       .then(res => {
                         
                         localStorage.setItem("acces_token", res.data.token), //recuperation du token  
                         localStorage.setItem("userId", res.data.userId), //recuperation du userId
                         localStorage.setItem("isAdmin", res.data.isAdmin), //recuperation isAdmin
-                        alert("Vous êtes connectez !")
+                        alert("Vous êtes connectez !"),
                         this.$router.push('/userconnect');
                       })
                       .catch(error => {
                         const erreur = error.res.data
                         alert(erreur.error)
                       })
+                     }
                     }
               },
       

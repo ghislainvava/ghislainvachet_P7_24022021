@@ -4,43 +4,47 @@
     <div class="desc">
     <h1 v-if="user">Bienvenue {{ user.InputPseudo }} ! </h1>
     <h2>Vous pouvez modifier votre profil ci-dessous : </h2>
-    <form  @submit.prevent="handleSubmit"  class="form-group"> 
-      
-      <div class="form-group" >
-        
-          <input   class="form-control" v-model="InputPseudo" placeholder="modifier ici" >
-          <p v-if="InputPseudo">Votre Pseudo est : {{InputPseudo}}!</p>
-          <p v-else>Votre nouveau Pseudo est : {{ InputPseudo }}</p>
-          
-      </div>
-      <div class="form-group">
-        <input   class="form-control" v-model="InputName" placeholder="modifier ici" >
-          <p v-if="InputName">Votre  nom  est : {{ InputName }}</p>
-          <p v-else>Votre nom actualisé est : {{InputName}}</p>
-      </div>
-      <div class="form-group">
-        <input   class="form-control" v-model="InputLastName" placeholder="modifier ici" >
-          <p v-if="InputLastName">Votre prénom  est : {{ InputLastName }}</p>
-          <p v-else>Votre prénom rectifié est : {{InputLastName}}</p>
-      </div>
-      <div class="form-group">
-        <input   class="form-control" v-model="InputEmail" placeholder="modifier ici" >
-          <p v-if="InputEmail">Votre  adresse mail est : {{ InputEmail }}</p>
-          <p v-else>Votre nouvelle adresse mail est : {{InputEmail}}</p>
-      </div>
-      
+                                              <!-- formulaire pour modifier son profil -->
+    <form  @submit.prevent="handleSubmit"      
+           class="form-group mx-5"> 
+            <div class="form-group" >
+                  <input   class="form-control" 
+                            v-model="InputPseudo" 
+                            placeholder="modifier ici" >
+                  <p v-if="InputPseudo">Votre Pseudo est : {{InputPseudo}}!</p>
+                  <p v-else>Votre nouveau Pseudo est : {{ InputPseudo }}</p>
+           </div>
+            <div class="form-group">
+                  <input   class="form-control" 
+                            v-model="InputName" 
+                            placeholder="modifier ici" >
+                    <p v-if="InputName">Votre  nom  est : {{ InputName }}</p>
+                    <p v-else>Votre nom actualisé est : {{InputName}}</p>
+            </div>
+            <div class="form-group">
+              <input   class="form-control" 
+                        v-model="InputLastName" 
+                        placeholder="modifier ici" >
+                <p v-if="InputLastName">Votre prénom  est : {{ InputLastName }}</p>
+                <p v-else>Votre prénom rectifié est : {{InputLastName}}</p>
+            </div>
+            <div class="form-group">
+              <input   class="form-control" 
+                        v-model="InputEmail" 
+                        placeholder="modifier ici" >
+                <p v-if="InputEmail">Votre  adresse mail est : {{ InputEmail }}</p>
+                <p v-else>Votre nouvelle adresse mail est : {{InputEmail}}</p>
+            </div>
           <button type="submit" class="btn btn-primary">Modifier</button>
-
     </form> 
       <div id="envoi">
+                                        <!-- bouton pour supprimer son compte qui n'est pas accessible à l'administrateur -->
         <button  v-show="isAdmin == 0"       
                 @click="deleteSubmit()"
                 class="btnsup mt-3 btn btn-sm btn-outline-danger">
                 Supprimer votre compte <b-icon icon="exclamation-triangle"></b-icon>
-              </button>
+        </button>
 
-        
-            
     </div>
         </div>
 </div>
@@ -52,7 +56,7 @@ export default {
   components: { NavbarSimple },
     data(){
         return{
-           user: [/*user récupéré */ ],
+           user: [/*users récupérés */ ],
           InputEmail: "", //user modifié
           InputName: "",
           InputLastName: "",
@@ -63,24 +67,24 @@ export default {
         }
     },
     methods: {
-      handleSubmit(){
-            axios.put(`http://localhost:3000/api/user/Profil/modify?id=${this.user_id}`, {
-                'InputPseudo' : this.InputPseudo,
-                'InputName' : this.InputName,
-                'InputLastName' : this.InputLastName,
-                'InputEmail': this.InputEmail
-              }, { headers: {
-                Authorization: `token ${localStorage.getItem("acces_token")}`
-                }
-              })
-            .then(res => {
-              alert(res.body.message)
-              this.$router.push('/Userconnect');
-            })
-            .catch(error => {
-              const erreur = error.res.data
-              alert(erreur.error)
-            })
+      async handleSubmit(){
+              await axios.put(`http://localhost:3000/api/user/profil/modify?id=${this.user_id}`, {
+                      'InputPseudo' : this.InputPseudo,
+                      'InputName' : this.InputName,
+                      'InputLastName' : this.InputLastName,
+                      'InputEmail': this.InputEmail
+                    }, { headers: {
+                      Authorization: `token ${localStorage.getItem("acces_token")}`
+                      }
+                    })
+                  .then(res => {
+                    console.log(res)
+                    this.$router.go('/');//reactualisation de la page
+                  })
+                  .catch(error => {
+                    const erreur = error.res.data
+                    alert(erreur.error)
+                  })
         },
   
         deleteSubmit(){
@@ -93,7 +97,7 @@ export default {
               }   
           }
             if (testConfirmDialog() == 0){
-                axios.delete(`http://localhost:3000/api/user/Profil/modify?id=${this.user_id}`, { 
+                axios.delete(`http://localhost:3000/api/user/profil/modify?id=${this.user_id}`, { 
                   headers:{
                 Authorization: `token ${localStorage.getItem("acces_token")}`
                 }
@@ -111,8 +115,7 @@ export default {
          },
          
     },
-    created(){
-                console.log(this.user_id)
+    created(){ //permet un affichage dés le démarrage 
                 this.user = [];
             axios.get(`http://localhost:3000/api/user/profil?id=${this.user_id}`, 
             {

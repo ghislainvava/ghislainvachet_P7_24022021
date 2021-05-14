@@ -10,7 +10,7 @@
 
     pour utiliser le backend
 
-- importer dans phpmyadmin le fichier groupomania.sql du dossier db 
+- importer dans phpmyadmin les elements du fichier sqlcreate.sql du dossier controllers 
 - "npm install" 
 - creer un fichier .env et rentrer les codes que le createur vous aura transmis
 - "nodemon serve"

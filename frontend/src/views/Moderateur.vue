@@ -58,9 +58,8 @@ export default {
                  
                   
                 })
-                .catch((error) => {
-                  const erreur = error.res.data
-                  alert(erreur.error)
+                .catch(() => {
+                 alert("Vous n'êtes pas administrateur la suppresion à échouée !")
                   });
                 }
             }
