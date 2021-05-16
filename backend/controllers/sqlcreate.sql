@@ -7,6 +7,3 @@ CREATE TABLE PostGroupomania (id_Post INT(11) AUTO_INCREMENT PRIMARY KEY, id_Use
 
 CREATE TABLE CommentGroupomania (Id_commentaire INT(11) AUTO_INCREMENT PRIMARY KEY, id_PostComment int(11) , date_commentaire timestamp default CURRENT_TIMESTAMP, commentaire varchar(500), createur int(11), FOREIGN Key (createur ) REFERENCES PostGroupomania (id_User) ON DELETE CASCADE );
 
-CREATE TABLE PostTextGroupomania (id_P INT(11) AUTO_INCREMENT PRIMARY KEY, id_U int(11) ,Sujet varchar(500), date_p timestamp default CURRENT_TIMESTAMP, FOREIGN Key (Id_U) REFERENCES userGroupamania (id) ON DELETE CASCADE );
-
-CREATE TABLE CommentTextGroupomania (Id_Comment INT(11) AUTO_INCREMENT PRIMARY KEY, id_PostCommentaire int(11) , date_comment timestamp default CURRENT_TIMESTAMP, SujetComment varchar(500), id_Createur int(11), FOREIGN Key (id_Createur ) REFERENCES PostTextGroupomania (id_U) ON DELETE CASCADE );

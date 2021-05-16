@@ -4,7 +4,6 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login'
 import SignIn from '../views/SingIn'
 import Footer from '../components/Footer'
-import Forum from '../views/Forum'
 import UserConnect from '../views/UserConnect'
 import Profil from '../views/Profil'
 import Moderateur from '../views/Moderateur'
@@ -42,11 +41,6 @@ const routes = [
      path:'/publications',
      name: 'Publications',
      component: Publications
-   },
-   {
-     path: '/forum',
-     name: 'Forum',
-     component: Forum
    },
    {
      path:'/userConnect',

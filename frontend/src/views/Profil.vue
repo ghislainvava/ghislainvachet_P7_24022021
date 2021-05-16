@@ -62,7 +62,8 @@ export default {
           InputLastName: "",
           InputPseudo: "",
           user_id: localStorage.getItem("userId") || null,
-          isAdmin: localStorage.getItem("isAdmin")
+          isAdmin: localStorage.getItem("isAdmin"),
+          connect : 1
 
         }
     },
@@ -115,8 +116,7 @@ export default {
          },
          
     },
-    created(){ //permet un affichage dés le démarrage 
-                this.user = [];
+    created(){ //permet un affichage dés le démarrage   
             axios.get(`http://localhost:3000/api/user/profil?id=${this.user_id}`, 
             {
               headers:{
@@ -135,7 +135,8 @@ export default {
         const erreur = error.res.data
         alert(erreur.error)
       })
-    }
+    },
+    
         
 }
 </script>

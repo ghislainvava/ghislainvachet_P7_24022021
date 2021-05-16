@@ -7,9 +7,10 @@
                          class="w-75 d-flex justify-content-start">
                 </div>
                 <div class="col-6  d-flex align-items-center justify-content-md-end  " >   
-                    <button @click="change()" 
+                    <button  
+                             @click="change()" 
                             class="btn btn-outline-primary  mr-2 h-25 border-white">
-                            <b-icon icon="house-door-fill"></b-icon>
+                            <b-icon  icon="house-door-fill"></b-icon>
                     </button> 
                     <button @click="account()" 
                             class="btn btn-outline-primary border-white  mr-2 h-25">
@@ -29,8 +30,15 @@
 
 export default {
     name: "NavbarSimple",
+    data(){
+        return {
+           
+           
+        }
+    },
 
     methods : {
+       
         deconnecte(){
            localStorage.clear();
            this.$router.push('/');

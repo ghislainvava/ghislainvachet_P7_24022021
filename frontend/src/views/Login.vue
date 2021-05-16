@@ -45,6 +45,7 @@ export default {
                         localStorage.setItem("acces_token", res.data.token), //recuperation du token  
                         localStorage.setItem("userId", res.data.userId), //recuperation du userId
                         localStorage.setItem("isAdmin", res.data.isAdmin), //recuperation isAdmin
+                        
                         alert("Vous êtes connectez !"),
                         this.$router.push('/userconnect');
                       })

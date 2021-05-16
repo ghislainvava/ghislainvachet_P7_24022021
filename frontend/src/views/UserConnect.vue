@@ -13,16 +13,18 @@ import IntranetModerer from '../components/IntranetModerer'
 
 export default {
     name: "UserConnect",
-    data()  {
-        return{
-            home : 1
-        }
-    },
+        data() {
+            return {
+              
+            }
+        },
+ 
     components :  {
         Footer,
         NavbarSimple,
         IntranetModerer
     },
+
 }
 </script>
 
