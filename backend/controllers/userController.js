@@ -26,8 +26,15 @@ exports.signIn = (req, res) => {
                   InputPassword : hash
             });
                 db.query(`INSERT INTO userGroupamania(InputPseudo,InputName, InputLastName, InputEmail, InputPassword ) VALUES(?, ?, ?, ?, ?)`, // sauvegarde du nouvel utilisateur
-                [user.InputPseudo,user.InputName, user.InputLastName, user.InputEmail, user.InputPassword])
-                res.status(201).json({user, message: "Compte créé !"});
+                [user.InputPseudo,user.InputName, user.InputLastName, user.InputEmail, user.InputPassword]), function(err, data, fields){
+                  if (err.errno == 1062){
+                    res.status(401).json({ message: "Vous ne pouvez pas vous inscrire avec ces parametres"})
+                  } else {
+                    
+                    res.status(201).json({user, message: "Compte créé !"});
+                  }
+                }
+                
               }) 
             .catch(error => res.status(500).json({ error }));
           }
