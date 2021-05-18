@@ -1,7 +1,7 @@
 <template>
         
         <div>
-            <NavbarSimple/>
+            <NavbarSimple :montrer='true'/>
             <h2 >Voici la liste des utilisateurs</h2>
             <ul  class="d-flex flex-column  mt-5">
                 <li class="pseudo d-flex justify-content-beetween " v-for="user in users" :key="user.InputPseudo">

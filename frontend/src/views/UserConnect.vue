@@ -1,6 +1,6 @@
 <template>
     <div >
-        <NavbarSimple/>
+        <NavbarSimple :montrer="false"/>
         <IntranetModerer/>
         <Footer/>
     </div>

@@ -1,6 +1,6 @@
 <template >
 <div>
-    <NavbarSimple/>
+    <NavbarSimple :montrer='true'/>
     <div class="desc">
     <h1 v-if="user">Bienvenue {{ user.InputPseudo }} ! </h1>
     <h2>Vous pouvez modifier votre profil ci-dessous : </h2>

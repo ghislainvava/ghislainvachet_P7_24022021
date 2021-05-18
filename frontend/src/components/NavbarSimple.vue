@@ -7,7 +7,7 @@
                          class="w-75 d-flex justify-content-start">
                 </div>
                 <div class="col-6  d-flex align-items-center justify-content-md-end  " >   
-                    <button  
+                    <button  v-show="montrer == true"
                              @click="change()" 
                             class="btn btn-outline-primary  mr-2 h-25 border-white">
                             <b-icon  icon="house-door-fill"></b-icon>
@@ -35,6 +35,9 @@ export default {
            
            
         }
+    },
+    props : {
+        montrer: Boolean
     },
 
     methods : {

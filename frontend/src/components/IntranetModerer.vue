@@ -4,7 +4,8 @@
             <router-link   type="button" class="btn btn-outline-danger mb-5 " to="/moderateur">Modérer</router-link> 
         </div>
         
-    <router-link type="button" class="btn btn-outline-secondary btn-lg mr-3" to="/Publications">Forum </router-link>
+    <router-link type="button" class="btn btn-outline-secondary btn-lg mr-3" to="/Publications">Forum Multimédia </router-link>
+    <router-link type="button" class="btn btn-outline-secondary btn-lg " to="/forum">Forum</router-link>
     
 
    

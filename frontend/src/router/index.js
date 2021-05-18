@@ -8,6 +8,7 @@ import UserConnect from '../views/UserConnect'
 import Profil from '../views/Profil'
 import Moderateur from '../views/Moderateur'
 import Publications from '../views/Publications'
+import Forum from '../views/Forum'
 
 
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path:'/forum',
+    name: 'Forum',
+    component: Forum
   },
   
    {
