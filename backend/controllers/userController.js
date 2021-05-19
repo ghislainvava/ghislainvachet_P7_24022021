@@ -11,33 +11,35 @@ const db = require('../middleware/connect')
 
 
 exports.signIn = (req, res) => {
-    if (!validator.validate(req.body.InputEmail)) { //vérification de la validiter de l'email
-          throw { error: "Votre email n'est pas valide "}
-      }else if(!passwordSchema.validate(req.body.InputPassword)){ //vérification du mot de passe
-          throw {error: "Votre mot de passe doit 8 et 60 caractères sans espace, et inclure au moins une majuscule, une minuscule et un chiffre"}
-      }else{
-            hash = bcrypt.hash(req.body.InputPassword, 10)
-            .then (hash =>  {
-                const user = new User({
-                  InputPseudo: req.body.InputPseudo,
-                  InputName: req.body.InputName, 
-                  InputLastName: req.body.InputLastName,
-                  InputEmail: req.body.InputEmail,
-                  InputPassword : hash
-            });
-                db.query(`INSERT INTO userGroupamania(InputPseudo,InputName, InputLastName, InputEmail, InputPassword ) VALUES(?, ?, ?, ?, ?)`, // sauvegarde du nouvel utilisateur
-                [user.InputPseudo,user.InputName, user.InputLastName, user.InputEmail, user.InputPassword]), function(err, data, fields){
-                  if (err.errno == 1062){
-                    res.status(401).json({ message: "Vous ne pouvez pas vous inscrire avec ces parametres"})
-                  } else {
-                    
-                    res.status(201).json({user, message: "Compte créé !"});
-                  }
+  if (!validator.validate(req.body.InputEmail)) {
+    throw { error: "Votre email n'est pas valide "}
+  }else if(!passwordSchema.validate(req.body.InputPassword)){
+    throw {error: "Votre mot de passe doit 8 et 60 caractères sans espace, et inclure au moins une majuscule, une minuscule et un chiffre"}
+  }else{
+          hash = bcrypt.hash(req.body.InputPassword, 10)
+          .then (hash =>  {
+        
+          const user = new User({
+            InputPseudo: req.body.InputPseudo,
+            InputName: req.body.InputName, 
+            InputLastName: req.body.InputLastName,
+            InputEmail: req.body.InputEmail,
+            InputPassword : hash
+          });
+          
+              db.query(`INSERT INTO userGroupamania(InputPseudo,InputName, InputLastName, InputEmail, InputPassword ) VALUES(?, ?, ?, ?, ?)`, // sauvegarde du nouvel utilisateur
+              [user.InputPseudo,user.InputName, user.InputLastName, user.InputEmail, user.InputPassword], function (err, data, fields){
+                if(!err){
+                  res.status(201).json({user, message: "Compte créé !"})
+                } else {
+                  res.status(401).json({ message: "votre compte n'a pas pu être créer"})
                 }
-                
-              }) 
-            .catch(error => res.status(500).json({ error }));
-          }
+              })
+              
+              
+            }) 
+            .catch(() => res.status(401).json({ message: "votre compte n'a pas pu être créer"}))
+        }
     }
         
 exports.login = (req, res, next) => {

@@ -3,7 +3,7 @@
     <div>
         <img class="w-25 " src="../assets/icon-above-font.png" >
     </div>
-    <form  @submit.prevent="handleSubmit"  class="form-group m-3"> <!-- formulaire -->
+    <form  @submit.prevent="handSubmit"  class="form-group m-3"> <!-- formulaire -->
           <div class="form-group" >
               <label for="InputPseudo"></label>
                 <input name="InputPseudo" 
@@ -45,8 +45,9 @@
                         placeholder="Entrez votre email" 
                         required>
           </div>
+          <br>
           <div class="form-group">
-                <label for="InputPassword"></label>
+                <label for="InputPassword">Veillez à saisir au moins une majuscule, un chiffre et 8 caractères</label>
                 <input name="InputPassword" 
                        type="password" 
                        class="form-control" 
@@ -57,7 +58,7 @@
           </div>
           <button type="submit" 
                   class="btn btn-primary mt-3"
-                  >Soumettre</button>
+                  >S'inscrire</button>
     </form> 
 </div>
 </template>
@@ -77,16 +78,15 @@ export default {
       }
     },
           methods: {
-            handleSubmit(){               //methode pour envoyer l'inscription sur le serveur
-            axios.post('http://localhost:3000/api/user/signup', { 
+          async   handSubmit(){               //methode pour envoyer l'inscription sur le serveur
+            await axios.post('http://localhost:3000/api/user/signup', { 
                 'InputPseudo' : this.InputPseudo,
                 'InputName' : this.InputName,
                 'InputLastName': this.InputLastName,
                 'InputEmail': this.InputEmail,
                 'InputPassword':this.InputPassword
               })
-                .then(res => {
-                  console.log(res);
+                .then(() => {
                   alert("Votre compte a bien été crée !")
                   this.$router.push('/');
                 })

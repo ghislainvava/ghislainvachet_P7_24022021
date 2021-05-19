@@ -2,7 +2,7 @@
     <div>
         <img class="w-25" src="../assets/icon-above-font.png" >
     
-        <form @submit.prevent="handleSubmit" class="mx-auto w-75 ">
+        <form @submit.prevent="submitHand" class="mx-auto w-75 ">
             <div class="form-group">
                 <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" v-model="InputEmail" placeholder="Entrez votre email">
             </div>
@@ -25,7 +25,7 @@ export default {
     }
   },
     methods: {
-                  handleSubmit(){
+                  submitHand(){
                    
                     if (this.InputEmail =="" || this.InputPassword== ""){
                       this.$alert("Veuillez entrer votre email et votre mot de passe");
