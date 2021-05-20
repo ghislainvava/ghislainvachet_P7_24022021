@@ -9,8 +9,8 @@
     
 
    
-        <div class="d-flex flex-column mt-5" >
-                <img class="img-responsive" src="../assets/intranet.jpg">
+        <div class="d-flex flex-column mt-5 mx-auto" >
+                <img class="w-100 h-100 mx-auto" src="../assets/intranet.jpg" alt="reseau-social" lang="fr">
          </div>  
     </div>
     
@@ -25,3 +25,6 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>

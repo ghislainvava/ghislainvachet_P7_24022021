@@ -2,7 +2,7 @@
 <div>
     <NavbarSimple :montrer='true'/>
     <div class="desc">
-    <h1 v-if="user">Bienvenue {{ user.InputPseudo }} ! </h1>
+    <h1 >Bienvenue {{ user.InputPseudo }} ! </h1>
     <h2>Vous pouvez modifier votre profil ci-dessous : </h2>
                                               <!-- formulaire pour modifier son profil -->
     <form  @submit.prevent="handleSubmit"      
@@ -11,38 +11,35 @@
                   <input   class="form-control" 
                             v-model="InputPseudo" 
                             placeholder="modifier ici" >
-                  <p v-if="InputPseudo">Votre Pseudo est : {{InputPseudo}}!</p>
-                  <p v-else>Votre nouveau Pseudo est : {{ InputPseudo }}</p>
+                  <p>Votre Pseudo est : {{InputPseudo}}!</p>
+                
            </div>
             <div class="form-group">
                   <input   class="form-control" 
                             v-model="InputName" 
                             placeholder="modifier ici" >
-                    <p v-if="InputName">Votre  nom  est : {{ InputName }}</p>
-                    <p v-else>Votre nom actualisé est : {{InputName}}</p>
+                    <p >Votre  nom  est : {{ InputName }}</p>
             </div>
             <div class="form-group">
               <input   class="form-control" 
                         v-model="InputLastName" 
                         placeholder="modifier ici" >
-                <p v-if="InputLastName">Votre prénom  est : {{ InputLastName }}</p>
-                <p v-else>Votre prénom rectifié est : {{InputLastName}}</p>
+                <p >Votre prénom  est : {{ InputLastName }}</p>
             </div>
             <div class="form-group">
               <input   class="form-control" 
                         v-model="InputEmail" 
                         placeholder="modifier ici" >
-                <p v-if="InputEmail">Votre  adresse mail est : {{ InputEmail }}</p>
-                <p v-else>Votre nouvelle adresse mail est : {{InputEmail}}</p>
+                <p>Votre  adresse mail est : {{ InputEmail }}</p>
             </div>
-          <button type="submit" class="btn btn-primary">Modifier</button>
+          <button type="submit" class="btn btn-secondary">Modifier</button>
     </form> 
       <div id="envoi">
                                         <!-- bouton pour supprimer son compte qui n'est pas accessible à l'administrateur -->
         <button  v-show="isAdmin == 0"       
                 @click="deleteSubmit()"
                 class="btnsup mt-3 btn btn-sm btn-outline-danger">
-                Supprimer votre compte <b-icon icon="exclamation-triangle"></b-icon>
+                Supprimer votre compte <i class="fas fa-trash"></i>
         </button>
 
     </div>
@@ -53,6 +50,8 @@
 import axios from 'axios';
 import NavbarSimple from '../components/NavbarSimple.vue';
 export default {
+    name: "profil",
+
   components: { NavbarSimple },
     data(){
         return{

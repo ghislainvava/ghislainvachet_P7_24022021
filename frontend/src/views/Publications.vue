@@ -14,13 +14,15 @@
                               v-model="SujetPost"
                             ></textarea>
                             <div class="d-md-flex justify-content-between" >
+                              <label for="valider">Charger le fichier</label>
                                 <input type="file" 
+                                        id="valider"
                                         ref="image" 
                                         class="file-input"
                                         @change="upload()"/> 
                                 <button  type="submit" 
                                         @click.prevent="publier" 
-                                        class="btn btn-outline-secondary btn-md mt-2 mt-md-0"
+                                        class="btn btn-outline-secondary  font-weight-bold bg-white btn-md mt-2 mt-md-0"
                                         >Publier
                                 </button>
                             </div>
@@ -29,7 +31,7 @@
         <div class=" rounded-top bg-light createPost mt-5 mx-2 px-2 mx-md-5 px-md-5 py-3" 
               v-for="pub in Publications" :key="pub.SujetPost" >
                   <div class="d-flex row ml-2">
-                        <p class="border-bottom"> <b>{{ pub.InputPseudo }}</b> a posté le  {{ dateFormat(pub.date_post) }}</p>
+                        <p class="border-bottom font-weight-bold"> <b>{{ pub.InputPseudo }}</b> a posté le  {{ dateFormat(pub.date_post) }}</p>
                         <br>
                         <img 
                         v-show="pub.image !== '' && pub.image !== null"
@@ -37,12 +39,12 @@
                         class="w-75  mx-auto"
                         alt="image_ou_video"/>
                         <div class="d-flex w-100">
-                           <p class="d-flex justify-content-start">{{ pub.SujetPost }}</p>
+                           <p class="d-flex justify-content-start font-weight-bold">{{ pub.SujetPost }}</p>
                             <button       
                                 v-show="isAdmin == 1 || id_User == pub.id_User"              
                                 @click="deletePublication(pub)"       
-                                class=" btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
-                                <b-icon icon="trash"></b-icon>
+                                class=" btnsup  btn btn-sm font-weight-bold border-light mb-5 mr-3">
+                                <i class="fas fa-trash text-danger"></i> supprimer 
                             </button>
                         </div>
                   </div>
@@ -55,8 +57,9 @@
                                   placeholder="Écrivez votre commentaire...."
                                   v-model.lazy = commentaire
                                 ></textarea>
+                                
                                 <button type="submit" 
-                                        class=" ml-2 h-25 btn btn-outline-secondary btnComment">
+                                        class=" ml-2 h-25 btn btn-outline-secondary  font-weight-bold bg-white">
                                         Commenter
                                 </button>
                             </div>
@@ -70,12 +73,12 @@
                            <div class=" mt-3 border  rounded-top">
                                 <p class="bg-secondary text-white rounded-top">{{ comment.InputPseudo }} a commenté le :{{ dateFormat(comment.date_commentaire) }}</p>
                                 <div class=" d-flex justify-content-start">
-                                    <p class="mx-2">{{ comment.commentaire }}</p>
+                                    <p class="mx-2 font-weight-bold">{{ comment.commentaire }}</p>
                                     <button   
                                           v-show="isAdmin == 1 || id_User == comment.createur"                         
                                           @click="deleteComment(comment)"       
-                                          class="btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
-                                          <b-icon icon="trash"></b-icon>
+                                          class=" btnsup  btn btn-sm font-weight-bold border-light mb-5 mr-3">
+                                                 <i class="fas fa-trash text-danger"></i> supprimer 
                                     </button>
                                 </div>
                           </div>
@@ -88,6 +91,7 @@
 import axios from 'axios';
 import NavbarSimple from '../components/NavbarSimple'
 export default {
+    name: "Publications",
   data() {
     return {
       Publications:[],
@@ -199,4 +203,3 @@ export default {
       }  
   }
 </script>
-

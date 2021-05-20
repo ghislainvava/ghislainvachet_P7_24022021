@@ -5,11 +5,11 @@
             <h2 >Voici la liste des utilisateurs</h2>
             <ul  class="d-flex flex-column  mt-5">
                 <li class="pseudo d-flex justify-content-beetween " v-for="user in users" :key="user.InputPseudo">
-                    <h4 class="kolko d-flex justify-content-start"  >{{ user.InputPseudo}}</h4> 
+                    <p class="kolko d-flex justify-content-start"  >{{ user.InputPseudo}}</p> 
                     <button         
                         @click="deleteUser(user)"
                         class="btnsup ml-5 mb-2 btn btn-sm btn-outline-danger  ">
-                        <b-icon icon="trash"></b-icon>
+                        <i class="fas fa-trash"></i> supprimer
                     </button>
                 </li>
             </ul>
@@ -23,6 +23,7 @@ import Footer from '../components/Footer.vue';
 
 
 export default {
+    name: "Moderateur",
      components: {
          NavbarSimple,
           Footer

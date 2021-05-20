@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-        <img class="w-25 " src="../assets/icon-above-font.png" >
+        <img class="w-25 h-25 " src="../assets/icon-above-font.jpg" alt="logo reseau entreprise">
     </div>
     <form  @submit.prevent="handSubmit"  class="form-group m-3"> <!-- formulaire -->
           <div class="form-group" >
@@ -57,7 +57,7 @@
                        required>
           </div>
           <button type="submit" 
-                  class="btn btn-primary mt-3"
+                  class="btn btn-secondary mt-3"
                   >S'inscrire</button>
     </form> 
 </div>
@@ -90,9 +90,10 @@ export default {
                   alert("Votre compte a bien été crée !")
                   this.$router.push('/');
                 })
-                .catch(error => {
-                  const erreur = error.res.data
-                  alert(erreur.error)
+                .catch(() => {
+                  
+                  alert("Votre compte n'a pu être créer car le pseudo ou l'email est déjà utilisé")
+                  this.$router.go('/singin')
                 })
               }
         },

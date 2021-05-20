@@ -15,7 +15,7 @@
                                
                                 <button  type="submit" 
                                         @click.prevent="publierPost" 
-                                        class="btn btn-outline-secondary btn-md mt-2 mt-md-0"
+                                        class="btn btn-outline-secondary font-weight-bold bg-white btn-md mt-2 mt-md-0"
                                         >Publier
                                 </button>
                             </div>
@@ -24,14 +24,14 @@
         <div class=" rounded-top bg-light createPost mt-5 mx-2 px-2 mx-md-5 px-md-5 py-3" 
               v-for="publi in Publication" :key="publi.Sujet" >
                   <div class="d-flex row ml-2">
-                        <p class="border-bottom"> <b>{{ publi.InputPseudo }}</b> a posté le  {{ dateForm(publi.date_p) }}</p>
+                        <p class="border-bottom font-weight-bold"> <b>{{ publi.InputPseudo }}</b> a posté le  {{ dateForm(publi.date_p) }}</p>
                         <div class="d-flex w-100">
-                           <p class="d-flex justify-content-start">{{ publi.Sujet }}</p>
+                           <p class="d-flex justify-content-start font-weight-bold">{{ publi.Sujet }}</p>
                             <button       
                                 v-show="isAdmin == 1 || id_U == publi.id_U"              
                                 @click="deletePub(publi)"       
-                                class=" btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
-                                <b-icon icon="trash"></b-icon>
+                                class=" btnsup  btn btn-sm font-weight-bold border-light mb-5 mr-3">
+                                <i class="fas fa-trash text-danger"></i> supprimer
                             </button>
                         </div>
                   </div>
@@ -45,7 +45,7 @@
                                   v-model.lazy = SujetComment
                                 ></textarea>
                                 <button type="submit" 
-                                        class=" ml-2 h-25 btn btn-outline-secondary btnComment">
+                                        class=" ml-2 h-25 btn btn-outline-secondary font-weight-bold bg-white">
                                         Commenter
                                 </button>
                             </div>
@@ -57,14 +57,14 @@
                                 return comment.id_PostCommentaire == publi.id_P;
                               })" :key="comment.date_comment " >
                            <div class=" mt-3 border  rounded-top">
-                                <p class="bg-secondary text-white rounded-top">{{ comment.InputPseudo }} a commenté le :{{ dateForm(comment.date_comment) }}</p>
+                                <p class="bg-secondary text-white rounded-top font-weight-bold">{{ comment.InputPseudo }} a commenté le :{{ dateForm(comment.date_comment) }}</p>
                                 <div class=" d-flex justify-content-start">
                                     <p class="mx-2">{{ comment.SujetComment }}</p>
                                     <button   
                                           v-show="isAdmin == 1 || id_U== comment.id_Createur"                         
                                           @click="deleteCommentaire(comment)"       
-                                          class="btnsup  btn btn-sm btn-outline-danger border-light mb-5 mr-3">
-                                          <b-icon icon="trash"></b-icon>
+                                          class=" btnsup  btn btn-sm font-weight-bold border-light mb-5 mr-3">
+                                            <i class="fas fa-trash text-danger"></i> supprimer
                                     </button>
                                 </div>
                           </div>
@@ -77,6 +77,7 @@
 import axios from 'axios';
 import NavbarSimple from '../components/NavbarSimple'
 export default {
+    name: "forum",
   data() {
     return {
       Publication:[],

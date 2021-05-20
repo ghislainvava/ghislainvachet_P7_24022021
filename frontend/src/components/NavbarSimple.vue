@@ -2,24 +2,28 @@
     <div class="container ">            <!--composant qui de la barre de navigation-->
            <div class="d-flex ">
                 <div class="col-6 ">  
-                    <img src="../assets/icon-left-font.png"
+                    <img src="../assets/icon-left-font.jpg"
                          alt="logo-groupomania"
-                         class="w-75 d-flex justify-content-start">
+                         class="w-75 h-auto d-flex justify-content-start">
                 </div>
                 <div class="col-6  d-flex align-items-center justify-content-md-end  " >   
                     <button  v-show="montrer == true"
                              @click="change()" 
-                            class="btn btn-outline-primary  mr-2 h-25 border-white">
-                            <b-icon  icon="house-door-fill"></b-icon>
+                             
+                            class="btn btn-outline-secondary  mr-2 h-25 ">
+                             Accueil
+                            <i class="fas fa-home"></i>
                     </button> 
                     <button @click="account()" 
-                            class="btn btn-outline-primary border-white  mr-2 h-25">
-                            <b-icon icon="file-person"></b-icon>
+                           
+                            class="btn btn-outline-secondary  mr-2 h-25">
+                            <i class="far fa-user"></i> account
                     </button>
                     <button
                             @click="deconnecte()"  
-                            class="btn btn-outline-primary  h-25 border-white">
-                            <b-icon icon="box-arrow-right"></b-icon>
+                            
+                            class="btn btn-outline-secondary  h-25 ">
+                            <i class="fas fa-share-square"></i> Se déconnecter
                     </button>
                 </div>
            </div>
@@ -55,5 +59,3 @@ export default {
     }
 }
 </script>
-
-

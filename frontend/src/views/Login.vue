@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="w-25" src="../assets/icon-above-font.png" >
+        <img class="w-25 h-25" src="../assets/icon-above-font.jpg" alt="logo groupomania">
     
         <form @submit.prevent="submitHand" class="mx-auto w-75 ">
             <div class="form-group">
@@ -9,7 +9,7 @@
             <div class="form-group ">
                 <input type="password" class="form-control" id="Password" v-model="InputPassword" placeholder="Entrez votre mot de passe">
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
+            <button type="submit" class="btn btn-secondary mt-3">Se connecter</button>
       </form>
     </div>
 </template>
@@ -17,6 +17,7 @@
 import axios from 'axios' //client http
 
 export default {
+  name: "login",
   data() {
     return{
         //v-model
@@ -59,4 +60,3 @@ export default {
       
 }
 </script>
-

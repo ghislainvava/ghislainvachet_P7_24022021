@@ -1,9 +1,10 @@
 <template>
     <div class="nav" >
-        <img src="../assets/icon-left-font.png" alt="logo">
+        <img src="../assets/icon-left-font.jpg" alt="logo">
+        <p>Coucou</p>
         <div id="connexion">
-           <router-link  class="btn btn-primary btn-sm"  to="/Login"> connexion</router-link>
-           <router-link  class="btn btn-primary btn-sm"  to="/SingIn"> inscription</router-link>
+           <router-link  class="btn btn-secondary btn-sm"  to="/Login"> connexion</router-link>
+           <router-link  class="btn btn-secondary btn-sm"  to="/SingIn"> inscription</router-link>
         </div>
     </div>
 </template>
