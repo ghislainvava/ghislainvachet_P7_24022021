@@ -44,13 +44,14 @@ exports.signIn = (req, res) => {
         
 exports.login = (req, res, next) => {
   const InputEmail = req.body.InputEmail;
+  const code = process.env.CODE_TOKEN
 
   let sql = 'SELECT * FROM userGroupamania WHERE InputEmail = ?';
   db.query(sql,[InputEmail], function(err, data, fields){
           bcrypt.compare(req.body.InputPassword,  data[0].InputPassword )
           .then( valid => {  
             if (!valid) {
-              return res.status(404).json({ message: 'Mot de passe incorect !' })
+              return res.status(404).json({ message: code })
             }
           res.status(200).json({
               userId: data[0].id,

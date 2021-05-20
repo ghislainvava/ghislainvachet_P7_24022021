@@ -10,7 +10,7 @@
 
    
         <div class="d-flex flex-column mt-5 mx-auto" >
-                <img class="w-100 h-100 mx-auto" src="../assets/intranet.jpg" alt="reseau-social" lang="fr">
+                <img class="w-75 h-75 mx-auto" src="../assets/intranet.jpg" alt="reseau-social" >
          </div>  
     </div>
     
